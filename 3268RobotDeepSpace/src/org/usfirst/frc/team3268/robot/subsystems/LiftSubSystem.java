@@ -10,6 +10,8 @@ package org.usfirst.frc.team3268.robot.subsystems;
 import org.usfirst.frc.team3268.robot.RobotMap;
 import org.usfirst.frc.team3268.robot.commands.DrivingCommand;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
@@ -20,42 +22,64 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  * The motors which drive the robot, and their methods of control.
  */
 public class LiftSubSystem extends Subsystem {
-
-	Talon driveLeftFront;
-	Talon driveLeftBack;
-	Talon driveRightFront;
-	Talon driveRightBack;
-	SpeedControllerGroup driveLeft;
-	SpeedControllerGroup driveRight;
-	DifferentialDrive drive;
+	
+	Compressor c;
+	DoubleSolenoid frontPiston;
+	DoubleSolenoid backPiston;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public LiftSubSystem() {
-		driveLeftFront = new Talon(RobotMap.PWM_driveLeftFront);
-		driveLeftBack = new Talon(RobotMap.PWM_driveLeftBack);
-		driveRightFront = new Talon(RobotMap.PWM_driveRightFront);
-		driveRightBack = new Talon(RobotMap.PWM_driveRightBack);
-		driveLeft = new SpeedControllerGroup(driveLeftFront, driveLeftBack);
-		driveRight = new SpeedControllerGroup(driveRightFront, driveRightBack);
-		driveLeft.setInverted(true);
-		driveRight.setInverted(true);
-		drive = new DifferentialDrive(driveLeft, driveRight);
+		c = new Compressor();
+		frontPiston  = new DoubleSolenoid (1, 2);
+		backPiston = new DoubleSolenoid(3, 4);
 	}
-
-	public void tankDrive(Joystick joyL, Joystick joyR) {
-		drive.tankDrive(joyL.getY(), joyR.getY());
+	
+	public void SetCompressor(int type) 
+	{
+		switch (type) 
+		{
+			case 0:
+				c.start();
+				break;
+			
+			case 1:
+				c.stop();
+				break;
+		}
 	}
-
-	/**
-	 * Tank drive using individual joystick axes.
-	 *
-	 * @param leftAxis  Left sides value
-	 * @param rightAxis Right sides value
-	 */
+	
+	public void ExtendPiston(int type) 
+	{
+		switch (type) 
+		{
+			case 0:
+				frontPiston.set(DoubleSolenoid.Value.kForward);
+				break;
+			
+			case 1:
+				backPiston.set(DoubleSolenoid.Value.kForward);
+				break;
+		}
+	}
+	
+	public void ReversePiston(int type) 
+	{
+		switch (type)
+		{
+			case 0:
+				frontPiston.set(DoubleSolenoid.Value.kReverse);
+				break;
+			
+			case 1:
+				backPiston.set(DoubleSolenoid.Value.kReverse);
+				break;
+		}
+	}
+	
 
 	public void stop() {
-		drive.stopMotor();
+		
 	}
 
 	public void initDefaultCommand() {
