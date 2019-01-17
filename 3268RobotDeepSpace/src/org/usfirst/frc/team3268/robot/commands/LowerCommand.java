@@ -13,11 +13,11 @@ import org.usfirst.frc.team3268.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class LiftCommand extends Command {
+public class LowerCommand extends Command {
 	
 	boolean finished;
 	int side;
-	public LiftCommand(int side_) {
+	public LowerCommand(int side_) {
 		// Use requires() here to declare subsystem dependencies
 	//	requires(Robot.m_subsystem);
 		requires(Robot.lift);
@@ -34,7 +34,7 @@ public class LiftCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.lift.ExtendPiston(side);
+		Robot.lift.ReversePiston(side);
 		finished = true;
 	}
 

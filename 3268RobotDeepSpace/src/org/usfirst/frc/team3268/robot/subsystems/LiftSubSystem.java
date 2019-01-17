@@ -7,16 +7,11 @@
 
 package org.usfirst.frc.team3268.robot.subsystems;
 
-import org.usfirst.frc.team3268.robot.RobotMap;
 import org.usfirst.frc.team3268.robot.commands.DrivingCommand;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * The motors which drive the robot, and their methods of control.
@@ -78,8 +73,17 @@ public class LiftSubSystem extends Subsystem {
 	}
 	
 
-	public void stop() {
-		
+	public void stopPiston(int type) {
+		switch (type)
+		{
+			case 0:
+				frontPiston.set(DoubleSolenoid.Value.kOff);
+				break;
+			
+			case 1:
+				backPiston.set(DoubleSolenoid.Value.kOff);
+				break;
+		}
 	}
 
 	public void initDefaultCommand() {
