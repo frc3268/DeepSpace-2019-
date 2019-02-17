@@ -16,16 +16,16 @@ import edu.wpi.first.wpilibj.Talon;;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class BallSubSystem extends Subsystem {
-	Talon BallMotor;
+public class BallShootingSubSystem extends Subsystem {
+	Talon BallShootingMotor;
 	
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	public BallSubSystem() {
-		BallMotor = new Talon(RobotMap.PWM_ballMotor);
+	public BallShootingSubSystem() {
+		BallShootingMotor = new Talon(RobotMap.PWM_ballShootingMotor);
 	}
 	public void SetSpeed(double speed) {
-		BallMotor.set(speed);
+		BallShootingMotor.set(speed);
 	}
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

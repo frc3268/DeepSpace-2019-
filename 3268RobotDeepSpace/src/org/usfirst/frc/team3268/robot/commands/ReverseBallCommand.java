@@ -14,10 +14,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ShootBallCommand extends Command {
-	public ShootBallCommand() {
+public class ReverseBallCommand extends Command {
+	public ReverseBallCommand() {
 		// Use requires() here to declare subsystem dependencies
-	requires(Robot.ball);
+		requires(Robot.ballIntake);
+		requires(Robot.ballShooting);
 	}
 
 	// Called just before this Command runs the first time
@@ -28,7 +29,8 @@ public class ShootBallCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-Robot.ball.SetSpeed(1);
+		Robot.ballIntake.SetSpeed(-1);
+		Robot.ballShooting.SetSpeed(-1);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

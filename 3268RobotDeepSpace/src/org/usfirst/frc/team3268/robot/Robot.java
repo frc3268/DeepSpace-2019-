@@ -16,7 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3268.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3268.robot.subsystems.DrivingSubSystem;
 import org.usfirst.frc.team3268.robot.subsystems.LiftSubSystem;
-import org.usfirst.frc.team3268.robot.subsystems.BallSubSystem;
+import org.usfirst.frc.team3268.robot.subsystems.BallIntakeSubSystem;
+import org.usfirst.frc.team3268.robot.subsystems.BallShootingSubSystem;
 
 
 /**
@@ -29,7 +30,9 @@ import org.usfirst.frc.team3268.robot.subsystems.BallSubSystem;
 public class Robot extends TimedRobot {
 	public static DrivingSubSystem driveTrain = new DrivingSubSystem();
 	public static OI m_oi;
-	public static BallSubSystem ball = new BallSubSystem();
+	public static BallIntakeSubSystem ballIntake = new BallIntakeSubSystem();
+	public static BallShootingSubSystem ballShooting = new BallShootingSubSystem();
+
 	public static LiftSubSystem lift = new LiftSubSystem();
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
