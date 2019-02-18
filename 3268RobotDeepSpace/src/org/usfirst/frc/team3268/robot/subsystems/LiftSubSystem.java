@@ -19,15 +19,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class LiftSubSystem extends Subsystem {
 	
 	Compressor c;
-	DoubleSolenoid frontPiston;
-	DoubleSolenoid backPiston;
-
+	DoubleSolenoid frontRightPiston;
+	DoubleSolenoid frontLeftPiston;
+	
+	DoubleSolenoid backRightPiston;
+	DoubleSolenoid backLeftPiston;
+	public static final double TRAVEL_TIME = 2.0;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public LiftSubSystem() {
 		c = new Compressor();
-		frontPiston  = new DoubleSolenoid (1, 2);
-		backPiston = new DoubleSolenoid(3, 4);
+		frontRightPiston  = new DoubleSolenoid (1, 2);
+		frontLeftPiston = new DoubleSolenoid(3, 4);
+		
+		backRightPiston = new DoubleSolenoid(5, 6);
+		backLeftPiston = new DoubleSolenoid(7, 8);
+
 	}
 	
 	public void SetCompressor(int type) 
@@ -49,11 +56,13 @@ public class LiftSubSystem extends Subsystem {
 		switch (type) 
 		{
 			case 0:
-				frontPiston.set(DoubleSolenoid.Value.kForward);
+				frontRightPiston.set(DoubleSolenoid.Value.kForward);
+				frontLeftPiston.set(DoubleSolenoid.Value.kForward);
 				break;
 			
 			case 1:
-				backPiston.set(DoubleSolenoid.Value.kForward);
+				backRightPiston.set(DoubleSolenoid.Value.kForward);
+				backLeftPiston.set(DoubleSolenoid.Value.kForward);
 				break;
 		}
 	}
@@ -63,11 +72,13 @@ public class LiftSubSystem extends Subsystem {
 		switch (type)
 		{
 			case 0:
-				frontPiston.set(DoubleSolenoid.Value.kReverse);
+				frontRightPiston.set(DoubleSolenoid.Value.kReverse);
+				frontLeftPiston.set(DoubleSolenoid.Value.kReverse);
 				break;
 			
 			case 1:
-				backPiston.set(DoubleSolenoid.Value.kReverse);
+				backRightPiston.set(DoubleSolenoid.Value.kReverse);
+				backLeftPiston.set(DoubleSolenoid.Value.kReverse);
 				break;
 		}
 	}
@@ -77,11 +88,13 @@ public class LiftSubSystem extends Subsystem {
 		switch (type)
 		{
 			case 0:
-				frontPiston.set(DoubleSolenoid.Value.kOff);
+				frontRightPiston.set(DoubleSolenoid.Value.kOff);
+				frontLeftPiston.set(DoubleSolenoid.Value.kOff);
 				break;
 			
 			case 1:
-				backPiston.set(DoubleSolenoid.Value.kOff);
+				backRightPiston.set(DoubleSolenoid.Value.kOff);
+				backLeftPiston.set(DoubleSolenoid.Value.kOff);
 				break;
 		}
 	}

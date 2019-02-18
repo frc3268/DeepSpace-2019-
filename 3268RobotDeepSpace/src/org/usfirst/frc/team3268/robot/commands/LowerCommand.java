@@ -9,6 +9,7 @@ package org.usfirst.frc.team3268.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3268.robot.Robot;
+import org.usfirst.frc.team3268.robot.subsystems.LiftSubSystem;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -24,6 +25,8 @@ public class LowerCommand extends Command {
 		finished = false;
 		side = side_;
 		Robot.lift.SetCompressor(1);
+		this.setTimeout(LiftSubSystem.TRAVEL_TIME);
+
 	}
 
 	// Called just before this Command runs the first time
@@ -41,7 +44,7 @@ public class LowerCommand extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return finished;
+		return this.isTimedOut();
 	}
 
 	// Called once after isFinished returns true
