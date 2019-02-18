@@ -27,7 +27,7 @@ public class RobotMap {
 	public static final int climbButton = 0;
 	public static final int ballButton = 3;
 	public static final int ballReverseButton = 4;
-	public static final int clawButton = 0;
+	public static final int hatchButton = 2;
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;

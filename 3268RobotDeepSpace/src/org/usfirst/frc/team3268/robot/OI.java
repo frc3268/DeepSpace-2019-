@@ -25,10 +25,11 @@ public class OI {
 	// Button button = new JoystickButton(stick, buttonNumber);
 	public static Joystick leftStick = new Joystick(0);
 	public static Joystick rightStick = new Joystick(1);
-	public static Button clawButton = new JoystickButton(leftStick, RobotMap.clawButton); 
-	public static Button climbButton = new JoystickButton(rightStick, RobotMap.climbButton);
+	
+	public static Button ClimbButton = new JoystickButton(rightStick, RobotMap.climbButton);
 	public static Button BallButton = new JoystickButton(rightStick, RobotMap.ballButton);
 	public static Button BallReverseButton = new JoystickButton(rightStick, RobotMap.ballReverseButton);
+	public static Button HatchButton = new JoystickButton(rightStick, RobotMap.hatchButton);
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
@@ -49,12 +50,15 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	public OI() {
-		climbButton.whenPressed(new LiftCommand(0));
+		ClimbButton.whenPressed(new LiftCommand(0));
+		
 		BallButton.whenPressed(new BallCommand());
 		BallButton.whenReleased(new StopBallCommand());
 		
 		BallReverseButton.whenPressed(new ReverseBallCommand());
 		BallReverseButton.whenReleased(new StopBallCommand());
 
+		HatchButton.whenPressed(new ExtendHatchCommand());
+		HatchButton.whenReleased(new ReverseHatchCommand());
 	}
 }
