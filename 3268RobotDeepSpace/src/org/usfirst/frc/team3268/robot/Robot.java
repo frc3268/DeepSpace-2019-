@@ -13,10 +13,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team3268.robot.commands.ExampleCommand;
+
 import org.usfirst.frc.team3268.robot.subsystems.DrivingSubSystem;
 import org.usfirst.frc.team3268.robot.subsystems.HatchSubSystem;
 import org.usfirst.frc.team3268.robot.subsystems.LiftSubSystem;
+import org.usfirst.frc.team3268.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3268.robot.subsystems.BallIntakeSubSystem;
 import org.usfirst.frc.team3268.robot.subsystems.BallShootingSubSystem;
 

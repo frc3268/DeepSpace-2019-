@@ -23,7 +23,7 @@ public class HatchSubSystem extends Subsystem {
 	
 	public HatchSubSystem() {
 		compressor = new Compressor();
-		piston = new DoubleSolenoid(0, 0);
+		piston = new DoubleSolenoid(1, 0);
 	}
 	
 	public void setCompressor(int type) {

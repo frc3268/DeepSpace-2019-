@@ -23,10 +23,11 @@ public class OI {
 	// number it is.
 	// Joystick stick = new Joystick(port);
 	// Button button = new JoystickButton(stick, buttonNumber);
-	public static Joystick leftStick = new Joystick(0);
-	public static Joystick rightStick = new Joystick(1);
+	public static Joystick rightStick = new Joystick(0);
 	
 	public static Button ClimbButton = new JoystickButton(rightStick, RobotMap.climbButton);
+	public static Button ClimbButton2 = new JoystickButton(rightStick, 5);
+
 	public static Button BallButton = new JoystickButton(rightStick, RobotMap.ballButton);
 	public static Button BallReverseButton = new JoystickButton(rightStick, RobotMap.ballReverseButton);
 	public static Button HatchButton = new JoystickButton(rightStick, RobotMap.hatchButton);
@@ -51,7 +52,8 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	public OI() {
 		ClimbButton.whenPressed(new LiftCommand(0));
-		
+		ClimbButton2.whenPressed(new LiftCommand(1));
+
 		BallButton.whenPressed(new BallCommand());
 		BallButton.whenReleased(new StopBallCommand());
 		

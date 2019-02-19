@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team3268.robot.subsystems;
 
+import org.usfirst.frc.team3268.robot.OI;
+import org.usfirst.frc.team3268.robot.Robot;
 import org.usfirst.frc.team3268.robot.RobotMap;
 import org.usfirst.frc.team3268.robot.commands.DrivingCommand;
 
@@ -43,8 +45,10 @@ public class DrivingSubSystem extends Subsystem {
 		drive = new DifferentialDrive(driveLeft, driveRight);
 	}
 
-	public void tankDrive(Joystick joyL, Joystick joyR) {
-		drive.tankDrive(joyL.getY(), joyR.getY());
+	public void tankDrive(Joystick joy) {		
+		drive.arcadeDrive(
+				joy.getRawAxis(1) * 0.5, 
+				-joy.getRawAxis(0));
 	}
 
 	/**
