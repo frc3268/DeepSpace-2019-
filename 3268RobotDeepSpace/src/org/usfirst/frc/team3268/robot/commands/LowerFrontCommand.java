@@ -7,18 +7,24 @@
 
 package org.usfirst.frc.team3268.robot.commands;
 
-import org.usfirst.frc.team3268.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc.team3268.robot.Robot;
+import org.usfirst.frc.team3268.robot.subsystems.LiftSubSystem;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ReverseBallCommand extends Command {
-	public ReverseBallCommand() {
+public class LowerFrontCommand extends Command {
+	
+	boolean finished;
+	public LowerFrontCommand() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.ballIntake);
-		requires(Robot.ballShooting);
+	//	requires(Robot.m_subsystem);
+		requires(Robot.lift);
+		finished = false;
+		this.setTimeout(LiftSubSystem.TRAVEL_TIME);
+
 	}
 
 	// Called just before this Command runs the first time
@@ -29,19 +35,20 @@ public class ReverseBallCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ballIntake.SetSpeed(-0.5);
-		Robot.ballShooting.SetSpeed(-0.5);
+		Robot.lift.ReversePiston(0);
+		finished = true;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return this.isTimedOut();
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		Robot.lift.stopPiston(0);
 	}
 
 	// Called when another command which requires one or more of the same

@@ -25,7 +25,7 @@ public class LiftCommand extends Command {
 		requires(Robot.lift);
 		finished = false;
 		side = side_;
-		Robot.lift.SetCompressor(1);
+		//Robot.lift.SetCompressor(1);
 	}
 
 	// Called just before this Command runs the first time

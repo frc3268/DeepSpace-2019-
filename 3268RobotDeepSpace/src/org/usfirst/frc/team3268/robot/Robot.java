@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team3268.robot;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -38,7 +39,8 @@ public class Robot extends TimedRobot {
 	public static LiftSubSystem lift = new LiftSubSystem();
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
-
+	public UsbCamera FrontCam;
+	public UsbCamera BackCam;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -49,7 +51,11 @@ public class Robot extends TimedRobot {
 		m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-		CameraServer.getInstance().startAutomaticCapture();
+		FrontCam = CameraServer.getInstance().startAutomaticCapture(0);
+		BackCam = CameraServer.getInstance().startAutomaticCapture(1);
+		lift.SetCompressor(0);
+		lift.ReversePiston(0);
+
 	}
 
 	/**
@@ -120,6 +126,18 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		//	If the second button on the controller is pressed, swap the main camera
+		if(OI.controller.getRawButton(2))
+		{
+			if(CameraServer.getInstance().getServer().getSource() == FrontCam)
+			{
+				CameraServer.getInstance().getServer().setSource(BackCam);
+			}
+			else if(CameraServer.getInstance().getServer().getSource() == BackCam)
+			{
+				CameraServer.getInstance().getServer().setSource(FrontCam);
+			}
+		}
 	}
 
 	/**

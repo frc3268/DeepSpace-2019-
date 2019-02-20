@@ -18,7 +18,7 @@ public class ReverseHatchCommand extends Command {
 	public ReverseHatchCommand() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.hatch);
-		Robot.hatch.setCompressor(1);
+		//Robot.hatch.setCompressor(1);
 	}
 
 	// Called just before this Command runs the first time

@@ -8,6 +8,7 @@
 package org.usfirst.frc.team3268.robot.subsystems;
 
 import org.usfirst.frc.team3268.robot.OI;
+import edu.wpi.first.wpilibj.CameraServer;
 import org.usfirst.frc.team3268.robot.Robot;
 import org.usfirst.frc.team3268.robot.RobotMap;
 import org.usfirst.frc.team3268.robot.commands.DrivingCommand;
@@ -30,6 +31,7 @@ public class DrivingSubSystem extends Subsystem {
 	SpeedControllerGroup driveLeft;
 	SpeedControllerGroup driveRight;
 	DifferentialDrive drive;
+	public int cur = 1;	//	Tracker to track the current state of whether or not the robot is inverted or not.
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -44,11 +46,30 @@ public class DrivingSubSystem extends Subsystem {
 		driveRight.setInverted(true);
 		drive = new DifferentialDrive(driveLeft, driveRight);
 	}
-
-	public void tankDrive(Joystick joy) {		
+	public void SwapControls()
+	{
+		driveLeft.setInverted(!(driveLeft.getInverted()));
+		driveRight.setInverted(!(driveRight.getInverted()));
+		
+	}
+	public void tankDrive(Joystick joy) {	
 		drive.arcadeDrive(
 				joy.getRawAxis(1) * 0.5, 
-				-joy.getRawAxis(0));
+				-joy.getRawAxis(0) * 0.5);
+	}
+	public void tankDriveInv(Joystick joy) {	
+		//	If the tracker is 1, we use an inverted control scheme.
+		if(cur == 1)
+		{
+			drive.arcadeDrive(
+					-joy.getRawAxis(1) * 0.5, 
+					joy.getRawAxis(0) * 0.5);
+		}
+		//	If the tracker is 0, we use the standard control scheme.
+		else if(cur == 0)
+		{
+			tankDrive(joy);
+		}
 	}
 
 	/**

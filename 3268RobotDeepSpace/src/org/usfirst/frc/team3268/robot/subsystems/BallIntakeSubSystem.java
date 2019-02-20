@@ -23,6 +23,8 @@ public class BallIntakeSubSystem extends Subsystem {
 	// here. Call these from Commands.
 	public BallIntakeSubSystem() {
 		BallIntakeMotor = new Talon(RobotMap.PWM_ballIntakeMotor);
+		
+		BallIntakeMotor.setInverted(true);
 	}
 	public void SetSpeed(double speed) {
 		BallIntakeMotor.set(speed);
