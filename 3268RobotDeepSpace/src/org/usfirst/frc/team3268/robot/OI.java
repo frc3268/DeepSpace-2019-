@@ -30,8 +30,12 @@ public class OI {
 	public static Button ClimbButton2 = new JoystickButton(rightStick, 9);
 	public static Button ClimbButton3 = new JoystickButton(rightStick, 11);
 
-	public static Button BallButton = new JoystickButton(controller, RobotMap.ballButton);
-	public static Button BallReverseButton = new JoystickButton(controller, RobotMap.ballReverseButton);
+	public static Button BallIntakeButton = new JoystickButton(controller, RobotMap.ballIntakeButton);
+	public static Button BallReverseIntakeButton = new JoystickButton(controller, RobotMap.ballReverseIntakeButton);
+	
+	public static Button BallShootingButton = new JoystickButton(controller, RobotMap.ballShootingButton);
+	public static Button BallReverseShootingButton = new JoystickButton(controller, RobotMap.ballReverseShootingButton);
+	
 	public static Button HatchButton = new JoystickButton(controller, RobotMap.hatchButton);
 	public static Button SwapButton = new JoystickButton(rightStick, 2);
 
@@ -61,11 +65,17 @@ public class OI {
 
 		SwapButton.whenPressed(new SwapControlsCommand());
 		
-		BallButton.whenPressed(new BallCommand());
-		BallButton.whenReleased(new StopBallCommand());
+		BallIntakeButton.whenPressed(new BallIntakeCommand());
+		BallIntakeButton.whenReleased(new StopBallCommand(0));
 		
-		BallReverseButton.whenPressed(new ReverseBallCommand());
-		BallReverseButton.whenReleased(new StopBallCommand());
+		BallReverseIntakeButton.whenPressed(new ReverseBallIntakeCommand());
+		BallReverseIntakeButton.whenReleased(new StopBallCommand(0));
+		
+		BallShootingButton.whenPressed(new BallShootingCommand());
+		BallShootingButton.whenReleased(new StopBallCommand(1));
+		
+		BallReverseShootingButton.whenPressed(new ReverseBallShootingCommand());
+		BallReverseShootingButton.whenReleased(new StopBallCommand(1));
 
 		HatchButton.whenPressed(new ExtendHatchCommand());
 		HatchButton.whenReleased(new ReverseHatchCommand());
