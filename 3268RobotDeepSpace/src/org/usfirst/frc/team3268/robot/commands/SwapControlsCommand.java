@@ -25,25 +25,26 @@ public class SwapControlsCommand extends Command {
 	@Override
 	protected void initialize() {
 		// When we run this command, we switch the tracking variable
-		if(Robot.driveTrain.cur == 1)
+		if(Robot.driveTrain.invert)
 		{
-			Robot.driveTrain.cur = 0;
+			Robot.driveTrain.invert = false;
 		}
 		else
-			Robot.driveTrain.cur = 1;
+			Robot.driveTrain.invert = true;
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 		//	Call the invert method, swapping the controls
-		Robot.driveTrain.tankDriveInv(OI.rightStick);
+		//Robot.driveTrain.tankDriveInv(OI.rightStick);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true

@@ -31,7 +31,7 @@ public class DrivingSubSystem extends Subsystem {
 	SpeedControllerGroup driveLeft;
 	SpeedControllerGroup driveRight;
 	DifferentialDrive drive;
-	public int cur = 1;	//	Tracker to track the current state of whether or not the robot is inverted or not.
+	public boolean invert = false;	//	Tracker to track the current state of whether or not the robot is inverted or not.
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -53,23 +53,22 @@ public class DrivingSubSystem extends Subsystem {
 		
 	}
 	public void tankDrive(Joystick joy) {	
-		drive.arcadeDrive(
-				joy.getRawAxis(1) * 0.5, 
-				-joy.getRawAxis(0) * 0.5);
+		if( invert == true )
+		{
+			driveLeft.setInverted(false);
+			driveRight.setInverted(false);
+		}
+		else
+		{
+			driveLeft.setInverted(true);
+			driveRight.setInverted(true);	
+		}
+		drive.arcadeDrive(-joy.getRawAxis(1) * 0.5, 
+						joy.getRawAxis(0) * 0.5);
+
+
 	}
 	public void tankDriveInv(Joystick joy) {	
-		//	If the tracker is 1, we use an inverted control scheme.
-		if(cur == 1)
-		{
-			drive.arcadeDrive(
-					-joy.getRawAxis(1) * 0.5, 
-					joy.getRawAxis(0) * 0.5);
-		}
-		//	If the tracker is 0, we use the standard control scheme.
-		else if(cur == 0)
-		{
-			tankDrive(joy);	
-		}
 	}
 
 	/**
