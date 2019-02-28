@@ -68,7 +68,7 @@ public class DrivingSubSystem extends Subsystem {
 		//	If the tracker is 0, we use the standard control scheme.
 		else if(cur == 0)
 		{
-			tankDrive(joy);
+			tankDrive(joy);	
 		}
 	}
 

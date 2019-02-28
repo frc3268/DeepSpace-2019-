@@ -15,9 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * An example command.  You can replace me with your own command.
  */
 public class StopBallCommand extends Command {
-	public int type;
-	public StopBallCommand(int type_) {
-		type = type_;
+	public StopBallCommand() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.ballIntake);
 		requires(Robot.ballShooting);
@@ -31,10 +29,8 @@ public class StopBallCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		if(type == 0)
-			Robot.ballIntake.SetSpeed(0);
-		else if(type == 1)
-			Robot.ballShooting.SetSpeed(0);
+		Robot.ballIntake.SetSpeed(0);
+		Robot.ballShooting.SetSpeed(0);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
