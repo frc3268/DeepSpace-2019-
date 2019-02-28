@@ -54,16 +54,16 @@ public class DrivingSubSystem extends Subsystem {
 	}
 	public void tankDrive(Joystick joy) {	
 		drive.arcadeDrive(
-				joy.getRawAxis(1), 
-				-joy.getRawAxis(0) );
+				joy.getRawAxis(1) * 0.5, 
+				-joy.getRawAxis(0) * 0.5);
 	}
 	public void tankDriveInv(Joystick joy) {	
 		//	If the tracker is 1, we use an inverted control scheme.
 		if(cur == 1)
 		{
 			drive.arcadeDrive(
-					-joy.getRawAxis(1), 
-					joy.getRawAxis(0));
+					-joy.getRawAxis(1) * 0.5, 
+					joy.getRawAxis(0) * 0.5);
 		}
 		//	If the tracker is 0, we use the standard control scheme.
 		else if(cur == 0)
