@@ -26,9 +26,10 @@ public class OI {
 	public static Joystick rightStick = new Joystick(0);
 	public static Joystick controller = new Joystick(1);
 
-	public static Button ClimbButton = new JoystickButton(rightStick, RobotMap.climbButton);
-	public static Button ClimbButton2 = new JoystickButton(rightStick, 9);
-	public static Button ClimbButton3 = new JoystickButton(rightStick, 11);
+	public static Button ClimbButton = new JoystickButton(rightStick, RobotMap.climbButton);//Extend Front
+	public static Button ClimbButton2 = new JoystickButton(rightStick, 10);	//	Extend Back
+	public static Button ClimbButton3 = new JoystickButton(rightStick, 11);	//	Lower Front
+	public static Button ClimbButton4 = new JoystickButton(rightStick, 12);	//	Lower Back
 
 	public static Button BallButton = new JoystickButton(controller, RobotMap.ballButton);
 	public static Button BallReverseButton = new JoystickButton(controller, RobotMap.ballReverseButton);
@@ -56,8 +57,10 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	public OI() {
 		ClimbButton.whenPressed(new LiftCommand(0));
-		ClimbButton2.whenPressed(new LowerFrontCommand());
-		ClimbButton3.whenPressed(new LowerBackCommand());
+		ClimbButton2.whenPressed(new LiftCommand(1));
+
+		ClimbButton3.whenPressed(new LowerFrontCommand());
+		ClimbButton4.whenPressed(new LowerBackCommand());
 
 		SwapButton.whenPressed(new SwapControlsCommand());
 		

@@ -27,7 +27,7 @@ public class RobotMap {
 	public static final int PWM_ballIntakeMotor = 3;
 	public static final int PWM_ballShootingMotor = 4;
 	
-	public static final int climbButton = 7;
+	public static final int climbButton = 9;
 	public static final int ballButton = 6;
 	public static final int ballReverseButton = 5;
 	public static final int hatchButton = 1;
