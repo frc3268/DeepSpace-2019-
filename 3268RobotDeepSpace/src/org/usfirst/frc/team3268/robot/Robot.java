@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		m_choser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		FrontCam = CameraServer.getInstance().startAutomaticCapture(0);
@@ -126,7 +126,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		//	If the second button on the controller is pressed, swap the main camera
+		//	If the second button on the controller is pressed, swap the main camera 
 		if(OI.controller.getRawButton(2))
 		{
 			if(CameraServer.getInstance().getServer().getSource() == FrontCam)
