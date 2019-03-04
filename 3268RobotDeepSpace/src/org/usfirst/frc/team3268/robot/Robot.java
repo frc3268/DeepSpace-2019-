@@ -126,7 +126,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		//	If the second button on the controller is pressed, swap the main camera
+		//	If the second button on the controller is pressed, swap the main camera 
 		if(OI.controller.getRawButton(2))
 		{
 			if(CameraServer.getInstance().getServer().getSource() == FrontCam)
